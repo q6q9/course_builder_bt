@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Your First Post on Bridsgetown"
+title:  "Your First Post on Bridsgasdasdetown"
 date:   2022-05-03 16:15:04 +0300
 categories: updates
 ---

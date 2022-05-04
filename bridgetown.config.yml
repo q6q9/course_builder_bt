@@ -14,11 +14,29 @@
 # https://learnxinyminutes.com/docs/yaml/
 #
 
-url: "" # the base hostname & protocol for your site, e.g. https://example.com
+url: "https://example.com" # the base hostname & protocol for your site, e.g. https://example.com
 
-permalink: pretty
+#permalink: pretty
 template_engine: erb
 
+collections:
+  courses:
+    output: true
+    permalink: pretty
+    future: true
+    relations:
+      has_many: units
+
+  units:
+    output: true
+    permalink: pretty
+    future: true
+    relations:
+      belongs_to:
+        - course
+
+pagination:
+  enabled: true
 # Other options you might want to investigate:
 #
 # base_path: "/" # the subpath of your site, e.g. /blog. If you set this option,
