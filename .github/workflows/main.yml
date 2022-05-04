@@ -1,28 +1,39 @@
-image: ruby:2.6
+name: Deploy to GitHub pages
 
-pages:
-  script:
-  - apt-get update -yqqq
-  - curl -sL https://deb.nodesource.com/setup_12.x | bash -
-  - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-  - apt update
-  - apt-get install -y nodejs yarn
-  - export GEM_HOME=$PWD/gems
-  - export PATH=$PWD/gems/bin:$PATH
-  - gem install bundler
-  - gem install bridgetown -N
-  - bundle install
-  - yarn install
-  - yarn webpack --mode production
-  - bin/bridgetown build --base_path mysite --url https://bridgetownrb.gitlab.io
-  - cd dist
-  - ln -s index.html 404.html
-  - git config --global user.email "evsvmx@gmail.com"
-  - git config --global user.name "Evseev Maxim"
-  - git init --initial-branch=output
-  - git add -A
-  - git commit -m 'deploy'
-  - git push -f https://q6q9:${{ secrets.SECRET_KEY }}@github.com/q6q9/course_builder_bt.git
-  only:
-  - main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    environment: secret
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "yarn"
+      - run: yarn install
+
+      - name: Build
+        run: bin/bridgetown deploy
+
+      - name: Push
+        run: |
+              cd output
+              git config --global user.email "evsvmx@gmail.com"
+              git config --global user.name "Evseev Maxim"
+              git init --initial-branch=output
+              touch ./.nojekyll
+              git add -A
+              git commit -m 'deploy'
+              git push -f https://q6q9:${{ secrets.SECRET_KEY }}@github.com/q6q9/course_builder_bt.git output
