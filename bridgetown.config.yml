@@ -18,7 +18,7 @@
 
 url: "https://q6q9.github.io/"
 
-base_path: "/course_builder_bt"
+#base_path: "/course_builder_bt"
 
 #permalink: pretty
 template_engine: erb
@@ -29,15 +29,20 @@ collections:
     permalink: pretty
     future: true
     relations:
-      has_many: units
-
+      has_many: courses_units
   units:
     output: true
     permalink: pretty
     future: true
     relations:
+      has_many:
+        - courses_units
+  courses_units:
+    output: false
+    relations:
       belongs_to:
         - course
+        - unit
 
 pagination:
   enabled: true

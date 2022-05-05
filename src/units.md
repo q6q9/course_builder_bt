@@ -7,19 +7,29 @@ paginate:
 ---
 
 <ul>
-<% paginator.resources.each do |course| %>
-  <li>
-      <a href="<%= course.relative_url %>"><%= course.data.name %></a>
-  </li>
-<% end %>
+  <% paginator.resources.each do |unit| %>
+    <li>
+        <a href="<%= unit.relative_url %>"><%= unit.data.name %></a>
+    </li>
+  <% end %>
 </ul>
 <div>
-<% if paginator.total_pages > 1 %>
-    <% if paginator.previous_page %>
-      <a href="<%= paginator.previous_page_path %>">Previous Page</a>
+  <% if paginator.total_pages > 1 %>
+      <% if paginator.previous_page %>
+        <a href="<%= paginator.previous_page_path %>">Previous Page</a>
+      <% end %>
+      <% if paginator.next_page %>
+        <a href="<%= paginator.next_page_path %>">Next Page</a>
+      <% end %>
+  <% end %>
+</div>
+<div>
+  <h3>Without pagination:</h3>
+  <ul>
+    <% collections.units.resources.each do |unit| %>
+      <li>
+          <a href="<%= unit.relative_url %>"><%= unit.data.name %></a>
+      </li>
     <% end %>
-    <% if paginator.next_page %>
-      <a href="<%= paginator.next_page_path %>">Next Page</a>
-    <% end %>
-<% end %>
+  </ul>
 </div>
