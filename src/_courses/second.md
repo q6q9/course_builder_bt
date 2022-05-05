@@ -18,5 +18,6 @@ description: description about course
         .map {|course_unit| course_unit.relations.unit.data}
         .uniq {|unit| unit.name}
     )
-%>```
+%>
+```
 
