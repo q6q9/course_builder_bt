@@ -18,7 +18,7 @@
 
 url: "https://q6q9.github.io/"
 
-#base_path: "/course_builder_bt"
+base_path: "/course_builder_bt"
 
 #permalink: pretty
 template_engine: erb
