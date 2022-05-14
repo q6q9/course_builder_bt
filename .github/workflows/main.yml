@@ -34,6 +34,7 @@ jobs:
               git config --global user.name "Evseev Maxim"
               git init --initial-branch=output
               touch ./.nojekyll
+              cp -r ./course_builder_bt/* ./
               git add -A
               git commit -m 'deploy'
               git push -f https://q6q9:${{ secrets.SECRET_KEY }}@github.com/q6q9/course_builder_bt.git output
