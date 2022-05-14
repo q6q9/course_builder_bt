@@ -1,13 +1,17 @@
 <header>
-  <img src="<%= relative_url '/images/logo.svg' %>" alt="Logo" />
+  <img src="<%= relative_url '/images/logo.svg' %>" alt="Logo"/>
+
+  <nav class="menu">
+    <ul class="menu-list">
+      <li><a href="<%= relative_url '/' %>">Home</a></li>
+      <% ['about', 'posts', 'courses', 'units'].each do |slug|
+        href = relative_url "/#{slug}"
+        title = slug.capitalize
+      %>
+        <li><a href="<%= href %>"><%= title %></a></li>
+      <% end %>
+    </ul>
+  </nav>
+
 </header>
 
-<nav>
-  <ul>
-    <li><a href="<%= relative_url '/' %>">Home</a></li>
-    <li><a href="<%= relative_url '/about' %>">About</a></li>
-    <li><a href="<%= relative_url '/posts' %>">Posts</a></li>
-    <li><a href="<%= relative_url '/courses' %>">Courses</a></li>
-    <li><a href="<%= relative_url '/units' %>">Units</a></li>
-  </ul>
-</nav>

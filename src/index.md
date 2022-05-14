@@ -7,35 +7,37 @@ paginate:
     per_page: 1
 ---
 
-# Main page
-
-<h3>With pagination:</h3>
-<ul>
-<% paginator.resources.each do |course| %>
-  <li>
-      <a href="<%= course.relative_url %>"><%= course.data.name %></a>
-  </li>
-<% end %>
-</ul>
-<div>
-<% if paginator.total_pages > 1 %>
-    <% if paginator.previous_page %>
-      <a href="<%= paginator.previous_page_path %>">Previous Page</a>
-    <% end %>
-    <% if paginator.next_page %>
-      <a href="<%= paginator.next_page_path %>">Next Page</a>
-    <% end %>
-<% end %>
+<div class="columns">
+    <div class="column is-four-fifth">
+        Список курсов
+    </div>
+    <div class="column is-one-fifth">
+        <div class="buttons is-right">
+            <button class="button is-success">
+                + Новый курс
+            </button>
+        </div>
+    </div>
 </div>
+<hr class="mt-3">  
 
-<div>
-  <h3>Without pagination:</h3>
-  <ul>
+
+
+<div class="courses blocks">
+
     <% collections.courses.resources.each do |course| %>
-      <li>
-          <a href="<%= course.relative_url %>"><%= course.data.name %></a>
-      </li>
+        <div class="block">
+      
+            <div class="columns">
+                    <div class="column">
+                        <a class="is-size-3 columns is-four-fifths" href="<%= course.relative_url %>"><%= course.data.name %></a>
+                        <p class="columns is-four-fifths"><%= course.data.description %></p>
+                    </div>
+                    <p class="column has-text-right"><b><%= course.data.volume %></b></p>
+            </div>
+
+        </div>
     <% end %>
-  </ul>
+  
 </div>
 
