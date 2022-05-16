@@ -1,9 +1,10 @@
 ---
 layout: course
-name:  "name of course"
-volume:   volume
+name:  "Основная информация о виртуальных машинах"
+volume: 16 часов, 4 модуля
 annotation: annotation
 description: description about course
+price_USD: 345634
 --- 
 
 ### Course

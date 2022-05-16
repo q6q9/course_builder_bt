@@ -1,9 +1,11 @@
 ---
 layout: course
-name:  "second course"
-volume:   volume
+name:  "Стратегическое управление в образовании: методология и
+кейсы проектных решений"
+volume: 24 час. 6 модулей
 annotation: annotation
 description: description about course
+price_USD: 300
 --- 
 
 ### Course: 
